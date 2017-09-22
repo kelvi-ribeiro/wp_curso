@@ -16,26 +16,43 @@
 					<div class="noticias col-md-9">
 						<div class="row">
 							<?php 
+							$TAMANHO='col-md-12';
+							$OP_CONTENT='destaque';
 
-							$destaque = new WP_Query('post_type=post&posts_per_page=1&cat=14');
+							$itens = get_categories(array('14','18','28'));
 
-							if($destaque->have_posts()):
-								while($destaque->have_posts()):
-									$destaque->the_post();
-									?>
-									<div class="col-md-12">
-									<?php get_template_part('content','destaque') ?>
-									</div>
-									<?php
-								endwhile;
-								wp_reset_postdata();
-							else:
-						 ?>
-							<p>Nao tem nada ainda pra mostrar</p>
-						<?php 
-						endif;
-						?>
+							//echo '<pre>';
+							//var_dump($itens);
+							//echo '</pre>'
+							foreach ($itens as $item):
+								$args = array(
+									'category__in'=> $item->cat_ID,
+									'posts_per_page'=>1
+								);
 
+								$consulta = new WP_Query($args);
+
+								if($consulta->have_posts()):
+									while($consulta->have_posts()):
+										$consulta->the_post();
+										?>
+											<div class="<?php echo $TAMANHO; ?>">
+											<?php get_template_part('content',$OP_CONTENT);?>
+											</div>
+										
+
+										<?php
+										$TAMANHO = 'col-md-6';
+										$OP_CONTENT = 'secundaria';
+
+									endwhile;
+									wp_reset_postdata();
+								endif;
+
+								endforeach;
+							
+							 ?>
+							
 						</div>
 					</div>
 				</div>

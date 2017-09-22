@@ -1,27 +1,27 @@
 <?php get_header(); ?>
 
-<?php get_template_part('imgcabecalho.php' ); ?>
+<img class="img-responsive" src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
+
 <div class="conteudo">
 	<main>
 		<section class="meio">
 			<div class="container">
 				<div class="row">
 
-					<div class="blog col-md-9">
+					<div class="404 col-md-9">
+
 						<?php 
-							// Se houver algum post
+
+						the_archive_title('<h1 class="titulo-arquivo">','</h1>');
+						the_archive_description();
+
 						if(have_posts()) :
-								// Enquanto houver algum post, chame o post de determinada maneira
 							while (have_posts()) : the_post(); 
-								?>
 
-								<?php get_template_part('content', get_post_format()); ?>
-
-								<?php 
-							endwhile;
-
+								get_template_part('content', 'archive'); 
+								
+							endwhile;		
 							?>
-
 							<div class="paginacao text-left">
 								<?php next_posts_link("<< Mais antigos") ?>
 							</div>
@@ -30,13 +30,10 @@
 								<?php previous_posts_link("Mais novos >>"); ?>
 							</div>						
 
-							<?php
-						else:
-							?>
+						<?php else: ?>
 							<p>Nao tem nada ainda pra mostrar</p>
-							<?php 
-						endif;
-						?>
+						<?php endif; ?>
+
 
 					</div>
 					<aside class="barra-lateral col-md-3">

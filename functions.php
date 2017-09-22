@@ -1,5 +1,7 @@
 <?php 
 
+remove_action('wp_head','wp_generator' );
+
 // Função para carregamento dos scripts
 function carrega_scripts(){
 	// Enfileirando Bootstrap
@@ -24,6 +26,7 @@ add_theme_support('custom-background');
 add_theme_support('custom-header');
 add_theme_support('post-thumbnails');
 add_theme_support('post-formats', array('video', 'image'));
+add_theme_support('html5',array('search-form') );
 
 // Registrando sidebars
 if (function_exists('register_sidebar')){
@@ -50,3 +53,22 @@ if (function_exists('register_sidebar')){
 		)
 	);
 }
+
+//Alterara o número de itens por página no blog
+
+function num_itens_blog($query){
+	if(is_admin() || ! $query->is_main_query() )
+
+		return;
+	//Página Blog
+	if(is_home()){
+		$query->set('posts_per_page',2);
+		return;
+	}
+	
+}
+
+add_action('pre_get_posts','num_itens_blog',1);
+
+
+
