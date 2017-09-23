@@ -18,8 +18,8 @@
 
 					?>
 					<div class="row">
-						<div class="paginacao text-left col-md-6"><?php previous_post_link(); ?></div>
-						<div class="paginacao text-right col-md-6"><?php next_post_link(); ?></div>
+						<div class="paginacao text-left col-md-6 col-sm-6 col-xs-6"><?php previous_post_link(); ?></div>
+						<div class="paginacao text-right col-md-6 col-sm-6 col-xs-6"><?php next_post_link(); ?></div>
 					</div>
 					<?php	
 

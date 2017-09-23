@@ -17,7 +17,7 @@ add_action( 'wp_enqueue_scripts', 'carrega_scripts' );
 register_nav_menus(
 	array(
 		'meu_menu_principal' => 'Menu Principal',
-		'menu_rodape' => 'Menu Rodapé'
+		'menu_rodape' => 'Menu Rodape'
 	)
 );
 
@@ -52,6 +52,18 @@ if (function_exists('register_sidebar')){
 			'after_title'	=> '</h2>',			
 		)
 	);
+
+	register_sidebar(
+		array(
+			'name'		=> 'Redes Sociais',
+			'id'		=> 'redes-sociais',
+			'description'	=> 'Widget para redes sociais',
+			'before_widget'	=> '<div class="widget-wrapper">',
+			'after_widget'	=> '</div>',
+			'before_title'	=> '<h2 class="widget-titulo">',
+			'after_title'	=> '</h2>',			
+		)
+	);
 }
 
 //Alterara o número de itens por página no blog
@@ -71,4 +83,14 @@ function num_itens_blog($query){
 add_action('pre_get_posts','num_itens_blog',1);
 
 
+function mostra_telefone(){
+	if(wp_is_mobile()){
+		$resultado = '<div class"telefone"><h1><a href="tel:5521986748396">LIGAR AGORA <span class="glyphicon glyphicon-phone-alt"></span></></a></h1></div>';
+	}
 
+	return $resultado;
+}
+
+add_shortcode('meutelfone','mostra_telefone');
+
+ 

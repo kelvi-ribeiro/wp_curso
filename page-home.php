@@ -59,7 +59,10 @@
 			</div>
 		</section>
 		<section class="mapa">
-			<div class="container">Mapa</div>
+			<div class="ondeestamos">
+				<h1>Onde estamos?</h1>
+			</div>
+			<?php gmwd_map( 1, 1); ?>
 		</section>
 	</main>	
 </div>
