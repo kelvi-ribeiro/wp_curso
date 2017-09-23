@@ -2,7 +2,7 @@
 <div class="conteudo">
 	<main>
 		<section class="slide">
-			<div class="container">Slide</div>
+			<?php motoPressSlider( "home-slider" ) ?>
 		</section>
 		<section class="servicos">
 			<div class="container">Serviços</div>
@@ -10,10 +10,10 @@
 		<section class="meio">
 			<div class="container">
 				<div class="row">
-					<aside class="barra-lateral col-md-3">
+					<aside class="barra-lateral col-md-4">
 						<?php get_sidebar('home'); ?>
 					</aside>
-					<div class="noticias col-md-9">
+					<div class="noticias col-md-8">
 						<div class="row">
 							<?php 
 							$TAMANHO='col-md-12';
